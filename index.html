@@ -103,22 +103,25 @@
     }
 
     const anniversary = new Date('2025-09-15');
-    const countdownDays = Math.floor((anniversary - today) / (1000 * 60 * 60 * 24));
+    let countdownDays = Math.floor((anniversary - today) / (1000 * 60 * 60 * 24));
+    if (countdownDays < 0) {
+      countdownDays = 0;
+    }
 
     const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     document.getElementById('date').textContent = `Today is ${today.toLocaleDateString(undefined, dateOptions)}`;
     document.getElementById('probability').textContent = `${(probability * 100).toFixed(4)}%`;
-    document.getElementById('countdown').textContent = `${countdownDays} days`;
+    document.getElementById('countdown').textContent = `${countdownDays} day${countdownDays === 1 ? '' : 's'}`;
 
   if (today.getFullYear() === 2026) {
       const startOfYear = new Date(today.getFullYear(), 0, 1);
-      const endOfYear = new Date(today.getFullYear(), 11, 31);
+      const endOfYear = new Date(today.getFullYear() + 1, 0, 1);
+      const daysInYear = (endOfYear - startOfYear) / (1000 * 60 * 60 * 24);
       const yearProgress = ((today - startOfYear) / (endOfYear - startOfYear)) * 100;
 
       document.getElementById('yearProgressContainer').style.display = 'block';
       document.getElementById('hpFill').style.width = `${yearProgress.toFixed(2)}%`;
-      document.getElementById('hpText').textContent = `${Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24) + 1)} / 365 days`;
-  }
+
 
   // Fetch latest Deltarune news video
   fetch('/.netlify/functions/latestNews')
@@ -136,6 +139,8 @@
       }
     })
     .catch(err => console.error('Failed to fetch news', err));
+      document.getElementById('hpText').textContent = `${Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24) + 1)} / ${daysInYear} days`;
+    }
   </script>
 </body>
 </html>
