@@ -14,10 +14,12 @@
       color: white;
       font-family: 'DeltaruneFont', 'Courier New', monospace;
       text-align: center;
-      padding-top: 5%;
+      padding: 5% 10px;
+      max-width: 600px;
+      margin: auto;
     }
     h1 {
-      font-size: 3em;
+      font-size: min(10vw, 3em);
     }
     p {
       font-size: 1.2em;
@@ -37,15 +39,16 @@
     }
     .hp-bar {
       position: relative;
-      background-color: #fe0000;
-      width: 60%;
+      background-color: #333;
+      width: 90%;
+      max-width: 400px;
       height: 30px;
       margin: 20px auto;
       border: 3px solid white;
     }
     .hp-fill {
       height: 100%;
-      background-color: #ffff00;
+      background-color: #ff0000;
       width: 0%;
       transition: width 0.5s ease-in-out;
     }
@@ -60,7 +63,7 @@
   <p id="date"></p>
   <p>Probability it drops <strong>tomorrow</strong>:</p>
   <h1 id="probability"></h1>
-  <p>Countdown to Undertale 10th Anniversary:</p>
+  <p>Countdown to Undertale 11th Anniversary:</p>
   <h1 id="countdown"></h1>
 
   <div id="yearProgressContainer" style="display: none;">
@@ -96,7 +99,8 @@
     const anniversary = new Date('2025-09-15');
     const countdownDays = Math.floor((anniversary - today) / (1000 * 60 * 60 * 24));
 
-    document.getElementById('date').textContent = `Today is ${today.toDateString()}`;
+    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('date').textContent = `Today is ${today.toLocaleDateString(undefined, dateOptions)}`;
     document.getElementById('probability').textContent = `${(probability * 100).toFixed(4)}%`;
     document.getElementById('countdown').textContent = `${countdownDays} days`;
 
