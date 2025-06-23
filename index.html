@@ -75,6 +75,11 @@
     <p class="hp-text" id="hpText"></p>
   </div>
 
+  <div id="news">
+    <h2>Latest Deltarune News</h2>
+    <div id="videoContainer"></div>
+  </div>
+
   <p class="tiny">Assuming uniform distribution across all of 2026.</p>
 
   <div class="links">
@@ -108,7 +113,7 @@
     document.getElementById('probability').textContent = `${(probability * 100).toFixed(4)}%`;
     document.getElementById('countdown').textContent = `${countdownDays} day${countdownDays === 1 ? '' : 's'}`;
 
-    if (today.getFullYear() === 2026) {
+  if (today.getFullYear() === 2026) {
       const startOfYear = new Date(today.getFullYear(), 0, 1);
       const endOfYear = new Date(today.getFullYear() + 1, 0, 1);
       const daysInYear = (endOfYear - startOfYear) / (1000 * 60 * 60 * 24);
@@ -116,6 +121,24 @@
 
       document.getElementById('yearProgressContainer').style.display = 'block';
       document.getElementById('hpFill').style.width = `${yearProgress.toFixed(2)}%`;
+
+
+  // Fetch latest Deltarune news video
+  fetch('/.netlify/functions/latestNews')
+    .then(r => r.json())
+    .then(data => {
+      if (data.videoId) {
+        const iframe = document.createElement('iframe');
+        iframe.width = '560';
+        iframe.height = '315';
+        iframe.src = `https://www.youtube.com/embed/${data.videoId}`;
+        iframe.frameBorder = '0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        document.getElementById('videoContainer').appendChild(iframe);
+      }
+    })
+    .catch(err => console.error('Failed to fetch news', err));
       document.getElementById('hpText').textContent = `${Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24) + 1)} / ${daysInYear} days`;
     }
   </script>
