@@ -122,7 +122,7 @@
       document.getElementById('yearProgressContainer').style.display = 'block';
       document.getElementById('hpFill').style.width = `${yearProgress.toFixed(2)}%`;
 
-
+  }
   // Fetch latest Deltarune news video
   fetch('/.netlify/functions/latestNews')
     .then(r => r.json())
@@ -140,7 +140,7 @@
     })
     .catch(err => console.error('Failed to fetch news', err));
       document.getElementById('hpText').textContent = `${Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24) + 1)} / ${daysInYear} days`;
-    }
+    
   </script>
 </body>
 </html>
