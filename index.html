@@ -5,40 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Deltarune Probability</title>
   <style>
-  @font-face {
-    font-family: 'Deltarune';
-    src: url('undertale-deltarune-text-font-extended.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  body {
-    background-color: black;
-    color: white;
-    font-family: 'Deltarune', 'Courier New', monospace;
-    text-align: center;
-    padding-top: 10%;
-  }
-  h1 {
-    font-size: 3em;
-  }
-  p {
-    font-size: 1.2em;
-  }
-  .tiny {
-    font-size: 0.9em;
-    color: #888;
-    margin-top: 2em;
-  }
-</style>
+    @font-face {
+      font-family: 'DeltaruneFont';
+      src: url('undertale-deltarune-text-font-extended.otf') format('opentype');
+    }
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'DeltaruneFont', 'Courier New', monospace;
+      text-align: center;
+      padding-top: 10%;
+    }
+    h1 {
+      font-size: 3em;
+    }
+    p {
+      font-size: 1.2em;
+    }
+    .tiny {
+      font-size: 0.9em;
+      color: #888;
+      margin-top: 2em;
+    }
+    .links {
+      margin-top: 3em;
+      font-size: 0.9em;
+    }
+    .links a {
+      color: #aaa;
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <h1>Deltarune Chapter 5 Probability</h1>
   <p id="date"></p>
   <p>Probability it drops <strong>tomorrow</strong>:</p>
   <h1 id="probability"></h1>
-  <p>Countdown to Undertale 10th Anniversary:</p>
+  <p>Countdown to Undertale 11th Anniversary:</p>
   <h1 id="countdown"></h1>
   <p class="tiny">Assuming uniform distribution across all of 2026.</p>
+
+  <div class="links">
+    <p><a href="https://deltarune.com" target="_blank">Visit Deltarune.com</a> | <a href="https://undertale.com" target="_blank">Visit Undertale.com</a></p>
+    <p><a href="https://store.steampowered.com/app/1671210/DELTARUNE/" target="_blank">Buy Deltarune on Steam!</a> | <a href="https://store.steampowered.com/app/391540/Undertale/" target="_blank">Buy Undertale on Steam!</a></p>
+    <p><em>This site is a fan project and is not affiliated with Toby Fox or Fangamer.</em></p>
+  </div>
 
   <script>
     const today = new Date();
